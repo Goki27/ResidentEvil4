@@ -39,6 +39,6 @@ public class OneShotSound : MonoBehaviour
     IEnumerator Resat()
     {
 
-        yield return new WaitForSeconds(pauseTime);  
+        yield return new WaitForSeconds(pauseTime);     
     }
 }
