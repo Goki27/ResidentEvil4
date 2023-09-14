@@ -10,16 +10,21 @@ public class Inventory : MonoBehaviour
 
     [SerializeField] GameObject appleImage1;
     [SerializeField] GameObject applebutton2;
+    [SerializeField] GameObject batterybutton1;
+    [SerializeField] GameObject batteryIcon2;
     // Start is called before the first frame update
     void Start()
     {
-    inventory.SetActive(false);
+        inventory.SetActive(false);
         InventoryVisible = false;
-    Cursor.visible = false;
+        Cursor.visible = false;
         appleImage1.gameObject.SetActive(false);
         applebutton2.gameObject.SetActive(false);
-    
-    
+        //for battery
+        batterybutton1.gameObject.SetActive(false);
+        batteryIcon2.gameObject.SetActive(false);
+
+
     }
 
     // Update is called once per frame
@@ -32,21 +37,22 @@ public class Inventory : MonoBehaviour
             {
 
                 inventory.SetActive(true);
-                InventoryVisible =true;
+                InventoryVisible = true;
                 //now we need to stop the world time when we open the inventory so we use the below statement
                 Time.timeScale = 0f;
                 Cursor.visible = true;
             }
-            
+
             else if (InventoryVisible == true)
             {
                 inventory.SetActive(false);
-                InventoryVisible =false;
+                InventoryVisible = false;
                 Time.timeScale = 1f;
                 Cursor.visible = false;
             }
         }
         checkInventory();
+        BatteryUpdate();
     }
     void checkInventory()
     {
@@ -55,14 +61,41 @@ public class Inventory : MonoBehaviour
             appleImage1.gameObject.SetActive(true);
             applebutton2.gameObject.SetActive(true);
         }
+
+        //logic for battery
+        if (SaveScript.Batteryies == 1)
+        {
+            batterybutton1.gameObject.SetActive(true);
+            batteryIcon2.gameObject.SetActive(true);
+        }
     }
     public void healthUpdate()
     {
-        SaveScript.healthBar += 10;
-        SaveScript.healthChanged = true;
-        SaveScript.apple -= 1;
+        
+        
+            SaveScript.healthBar += 10;
+            SaveScript.healthChanged = true;
+            SaveScript.apple -= 1;
+        
+
 
         appleImage1.gameObject.SetActive(false);
         applebutton2.gameObject.SetActive(false);
+
     }
+
+    public void BatteryUpdate() 
+    {
+       
+
+        SaveScript.batteryRefill=true;
+        SaveScript.Batteryies -= 1;
+
+        batteryIcon2.gameObject.SetActive(false);
+        batterybutton1.gameObject.SetActive(false);
+
+
+    }
+
+
 }

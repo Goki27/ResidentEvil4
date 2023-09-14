@@ -7,7 +7,11 @@ public class SaveScript : MonoBehaviour
     public static int healthBar = 85;
     public static bool healthChanged = false;   
     public static float BATTERYPower=1.0f;
+    public static bool batteryRefill = false;
     public static bool flashlightON = false;
     public static bool NVisonLightON = false;
     public static int apple = 0;
+    public static int Batteryies = 0;
+   
+   
 }
